@@ -31,13 +31,15 @@ class FactsViewModel(
         factsResponse.postValue(handleFactsResponse(response))
     }
 
-    private fun handleFactsResponse(response: Response<FactsResponse>): Resource<FactsResponse> {
-        if (response.isSuccessful) {
-            response.body().let { resultResponse ->
-                return Resource.success(resultResponse)
+    fun handleFactsResponse(response: Response<FactsResponse>?): Resource<FactsResponse> {
+        if (response != null) {
+            if (response.isSuccessful) {
+                response.body().let { resultResponse ->
+                    return Resource.success(resultResponse)
+                }
             }
         }
-        return Resource.error(response.body())
+        return Resource.error(response?.body())
     }
 
 }

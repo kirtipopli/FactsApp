@@ -18,7 +18,6 @@ class FactsActivity : BaseActivity<FactsViewModel>(), SwipeRefreshLayout.OnRefre
 
     private var factsListAdapter: FactsListAdapter? = null
     private var factsList: ArrayList<Facts>? = null
-    private val TAG: String = "FactsResponse"
 
     override fun provideLayoutId(): Int = R.layout.activity_facts
 

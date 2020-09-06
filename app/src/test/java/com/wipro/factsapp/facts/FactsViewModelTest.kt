@@ -2,6 +2,7 @@ package com.wipro.factsapp.facts
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import com.wipro.factsapp.data.dao.repository.FactsRepository
 import com.wipro.factsapp.data.network.callback.Resource
 import com.wipro.factsapp.features.facts.model.FactsResponse
@@ -12,7 +13,10 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.TestScheduler
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.runBlocking
 import org.junit.After
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +25,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
-@RunWith(MockitoJUnitRunner::class)
+    @RunWith(MockitoJUnitRunner::class)
 class FactsViewModelTest {
 
     @get:Rule
@@ -55,26 +59,19 @@ class FactsViewModelTest {
         factsViewModel.factsResponse.observeForever(factsObserver)
     }
 
+
     @Test
-    suspend fun getAllFactsTest(){
-        Mockito.doReturn(true)
-            .`when`(networkHelper)
-            .isNetworkConnected()
-        Mockito.doReturn(true)
-            .`when`(factsRepository)
-            .getAllFacts()
-
+    fun getAllFacts() {
         factsViewModel.getAllFacts()
-        testScheduler.triggerActions()
-
-        val testObserver = TestObserver<FactsResponse>()
-        testObserver.assertNoErrors()
-        testObserver.assertValue { t: FactsResponse -> true }
-
+        runBlocking {
+            (factsViewModel.viewModelScope.coroutineContext[Job]?.children?.forEach { it.join() })
+        }
     }
 
     @After
     fun tearDown() {
         factsViewModel.factsResponse.removeObserver(factsObserver)
     }
+
+
 }
