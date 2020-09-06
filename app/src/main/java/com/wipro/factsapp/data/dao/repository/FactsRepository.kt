@@ -1,6 +1,5 @@
 package com.wipro.factsapp.data.dao.repository
 
-import com.wipro.factsapp.data.network.ServerResponse
 import com.wipro.factsapp.features.facts.model.FactsResponse
 import com.wipro.factsapp.mvvmbase.network.NetworkService
 import io.reactivex.Single
