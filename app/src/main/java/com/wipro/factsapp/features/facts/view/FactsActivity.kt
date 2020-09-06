@@ -39,7 +39,8 @@ class FactsActivity : BaseActivity<FactsViewModel>(), SwipeRefreshLayout.OnRefre
                     progress_facts.visibility = View.GONE
                     recycler_facts.visibility = View.VISIBLE
                     tv_emptyFacts.visibility = View.GONE
-                    tv_factsTitle.text = resp.title
+                    supportActionBar?.title = resp.title
+//                    tv_factsTitle.text = resp.title
                     factsListAdapter?.factsList = it.data.rows!!
                     factsListAdapter?.notifyDataSetChanged()
                 }
@@ -48,6 +49,8 @@ class FactsActivity : BaseActivity<FactsViewModel>(), SwipeRefreshLayout.OnRefre
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
+        setSupportActionBar(toolbar)
+
         viewModel.getAllFacts()
         progress_facts.visibility = View.VISIBLE
 

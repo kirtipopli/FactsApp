@@ -14,6 +14,25 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite">
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:theme="@style/AppTheme"
+                    app:titleMarginStart="@dimen/viewSpacing_16dp"
+                    app:titleTextColor="@color/colorWhite">
+
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_factsTitle"
@@ -29,7 +48,8 @@
                 android:textSize="@dimen/textSpacing_20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/appbar"
+                app:layout_constraintVertical_bias="0.389"/>
 
             <ProgressBar
                 android:id="@+id/progress_facts"
