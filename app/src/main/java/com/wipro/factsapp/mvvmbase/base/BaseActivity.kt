@@ -35,29 +35,8 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
             .build()
 
     protected open fun setupObservers() {
-        viewModel.messageString.observe(this, Observer {
-            it.data?.run { showMessage(this) }
-        })
-
-        viewModel.messageStringId.observe(this, Observer {
-            it.data?.run { showMessage(this) }
-        })
 
     }
-
-    fun showMessage(message: String) =
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-
-    fun showMessage(@StringRes resId: Int) = showMessage(getString(resId))
-
-    open fun goBack() = onBackPressed()
-
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0)
-            supportFragmentManager.popBackStackImmediate()
-        else super.onBackPressed()
-    }
-
 
     @LayoutRes
     protected abstract fun provideLayoutId(): Int

@@ -22,9 +22,6 @@ class FactsApplication : MultiDexApplication(),
     @Inject
     lateinit var schedulerProvider: SchedulerProvider
 
-    private val isConnected = false
-
-
     override fun onCreate() {
         super.onCreate()
 
@@ -58,10 +55,6 @@ class FactsApplication : MultiDexApplication(),
     }
 
     override fun onActivityResumed(activity: Activity) {
-    }
-
-    fun getConnectionStatus(): Boolean {
-        return isConnected
     }
 
 }

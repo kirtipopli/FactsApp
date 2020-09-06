@@ -23,30 +23,8 @@ abstract class BaseViewModel(
 
     val messageStringId: MutableLiveData<Resource<Int>> = MutableLiveData()
     val messageString: MutableLiveData<Resource<String>> = MutableLiveData()
-    val logMessageStringId: MutableLiveData<Resource<Int>> = MutableLiveData()
-    val logMessageString: MutableLiveData<Resource<String>> = MutableLiveData()
 
     protected fun checkInternetConnection(): Boolean = networkHelper.isNetworkConnected()
-
-    protected fun handleNetworkError(err: Throwable?) =
-        err?.let {
-            networkHelper.castToNetworkError(it).run {
-                when (status) {
-                    -1 -> logMessageStringId.postValue(Resource.error(R.string.network_default_error))
-                    0 -> logMessageStringId.postValue(Resource.error(R.string.server_connection_error))
-                    HttpsURLConnection.HTTP_INTERNAL_ERROR ->
-                        logMessageStringId.postValue(Resource.error(R.string.network_internal_error))
-                    HttpURLConnection.HTTP_BAD_GATEWAY ->
-                        logMessageStringId.postValue(Resource.error(R.string.network_internal_error))
-                    HttpsURLConnection.HTTP_UNAVAILABLE ->
-                        logMessageStringId.postValue(Resource.error(R.string.network_server_not_available))
-                    HttpsURLConnection.HTTP_NO_CONTENT ->
-                        logMessageStringId.postValue(Resource.error(R.string.no_content))
-                    else -> logMessageString.postValue(Resource.error(message))
-                }
-            }
-        }
-
 
     abstract fun onCreate()
 }
