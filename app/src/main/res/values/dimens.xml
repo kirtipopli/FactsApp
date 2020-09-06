@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    //View Dimensions in dp
+    <dimen name="viewSpacing_0dp">0dp</dimen>
+    <dimen name="viewSpacing_02dp">0.2dp</dimen>
+    <dimen name="viewSpacing_05dp">0.5dp</dimen>
+    <dimen name="viewSpacing_08dp">0.8dp</dimen>
+    <dimen name="viewSpacing_1dp">1dp</dimen>
+    <dimen name="viewSpacing_2dp">2dp</dimen>
+    <dimen name="viewSpacing_3dp">3dp</dimen>
+    <dimen name="viewSpacing_4dp">4dp</dimen>
+    <dimen name="viewSpacing_5dp">5dp</dimen>
+    <dimen name="viewSpacing_6dp">6dp</dimen>
+    <dimen name="viewSpacing_7dp">7dp</dimen>
+    <dimen name="viewSpacing_8dp">8dp</dimen>
+    <dimen name="viewSpacing_10dp">10dp</dimen>
+    <dimen name="viewSpacing_12dp">12dp</dimen>
+    <dimen name="viewSpacing_14dp">14dp</dimen>
+    <dimen name="viewSpacing_15dp">15dp</dimen>
+    <dimen name="viewSpacing_16dp">16dp</dimen>
+    <dimen name="viewSpacing_18dp">18dp</dimen>
+    <dimen name="viewSpacing_20dp">20dp</dimen>
+    <dimen name="viewSpacing_22dp">22dp</dimen>
+    <dimen name="viewSpacing_24dp">24dp</dimen>
+    <dimen name="viewSpacing_25dp">25dp</dimen>
+    <dimen name="viewSpacing_26dp">26dp</dimen>
+    <dimen name="viewSpacing_28dp">28dp</dimen>
+    <dimen name="viewSpacing_30dp">30dp</dimen>
+    <dimen name="viewSpacing_32dp">32dp</dimen>
+    <dimen name="viewSpacing_34dp">34dp</dimen>
+    <dimen name="viewSpacing_35dp">35dp</dimen>
+    <dimen name="viewSpacing_36dp">36dp</dimen>
+    <dimen name="viewSpacing_38dp">38dp</dimen>
+    <dimen name="viewSpacing_40dp">40dp</dimen>
+    <dimen name="viewSpacing_42dp">42dp</dimen>
+    <dimen name="viewSpacing_44dp">44dp</dimen>
+    <dimen name="viewSpacing_45dp">45dp</dimen>
+    <dimen name="viewSpacing_46dp">46dp</dimen>
+    <dimen name="viewSpacing_48dp">48dp</dimen>
+    <dimen name="viewSpacing_50dp">50dp</dimen>
+    <dimen name="viewSpacing_52dp">52dp</dimen>
+    <dimen name="viewSpacing_54dp">54dp</dimen>
+    <dimen name="viewSpacing_60dp">60dp</dimen>
+    <dimen name="viewSpacing_62dp">62dp</dimen>
+    <dimen name="viewSpacing_64dp">64dp</dimen>
+    <dimen name="viewSpacing_70dp">70dp</dimen>
+    <dimen name="viewSpacing_72dp">72dp</dimen>
+    <dimen name="viewSpacing_74dp">74dp</dimen>
+    <dimen name="viewSpacing_75dp">75dp</dimen>
+    <dimen name="viewSpacing_80dp">80dp</dimen>
+    <dimen name="viewSpacing_84dp">84dp</dimen>
+    <dimen name="viewSpacing_90dp">90dp</dimen>
+    <dimen name="viewSpacing_92dp">92dp</dimen>
+    <dimen name="viewSpacing_100dp">100dp</dimen>
+    <dimen name="viewSpacing_110dp">110dp</dimen>
+    <dimen name="viewSpacing_120dp">120dp</dimen>
+    <dimen name="viewSpacing_130dp">130dp</dimen>
+    <dimen name="viewSpacing_140dp">140dp</dimen>
+    <dimen name="viewSpacing_150dp">150dp</dimen>
+    <dimen name="viewSpacing_160dp">160dp</dimen>
+    <dimen name="viewSpacing_180dp">180dp</dimen>
+    <dimen name="viewSpacing_200dp">200dp</dimen>
+    <dimen name="viewSpacing_220dp">220dp</dimen>
+    <dimen name="viewSpacing_250dp">250dp</dimen>
+    <dimen name="viewSpacing_300dp">300dp</dimen>
+    <dimen name="viewSpacing_350dp">350dp</dimen>
+    <dimen name="viewSpacing_400dp">400dp</dimen>
+    <dimen name="viewSpacing_450dp">450dp</dimen>
+
+    //Text Dimensions in sp
+    <dimen name="textSpacing_10sp">10sp</dimen>
+    <dimen name="textSpacing_12sp">12sp</dimen>
+    <dimen name="textSpacing_14sp">14sp</dimen>
+    <dimen name="textSpacing_16sp">16sp</dimen>
+    <dimen name="textSpacing_17sp">17sp</dimen>
+    <dimen name="textSpacing_18sp">18sp</dimen>
+    <dimen name="textSpacing_20sp">20sp</dimen>
+    <dimen name="textSpacing_21sp">21sp</dimen>
+    <dimen name="textSpacing_22sp">22sp</dimen>
+    <dimen name="textSpacing_24sp">24sp</dimen>
+    <dimen name="textSpacing_26sp">26sp</dimen>
+    <dimen name="textSpacing_28sp">28sp</dimen>
+    <dimen name="textSpacing_30sp">30sp</dimen>
+    <dimen name="textSpacing_32sp">32sp</dimen>
+    <dimen name="textSpacing_34sp">34sp</dimen>
+    <dimen name="textSpacing_36sp">36sp</dimen>
+    <dimen name="textSpacing_40sp">40sp</dimen>
+    <dimen name="textSpacing_50sp">50sp</dimen>
+
+
+</resources>
