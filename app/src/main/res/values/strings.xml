@@ -12,6 +12,7 @@
     <string name="str_something_error">Whoops!! Something went wrong, Please try refreshing.</string>
     <string name="no_content">No Content</string>
     <string name="no_facts">There are no facts yet!</string>
-
+    <string name="internet_connected">Internet Connected</string>
+    <string name="no_internet_connection">Mobile appears to be offline. Please connect to a WiFi to access Data</string>
 
 </resources>

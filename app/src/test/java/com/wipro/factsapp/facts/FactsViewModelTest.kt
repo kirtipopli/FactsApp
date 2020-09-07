@@ -8,24 +8,19 @@ import com.wipro.factsapp.data.network.callback.Resource
 import com.wipro.factsapp.features.facts.model.FactsResponse
 import com.wipro.factsapp.features.facts.viewmodel.FactsViewModel
 import com.wipro.factsapp.utils.NetworkHelper
-import com.wipro.factsapp.utilstest.TestSchedulerProvider
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.TestScheduler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
-    @RunWith(MockitoJUnitRunner::class)
+@RunWith(MockitoJUnitRunner::class)
 class FactsViewModelTest {
 
     @get:Rule
@@ -49,10 +44,7 @@ class FactsViewModelTest {
     fun setUp() {
         val compositeDisposable = CompositeDisposable()
         testScheduler = TestScheduler()
-        val testSchedulerProvider = TestSchedulerProvider(testScheduler)
         factsViewModel = FactsViewModel(
-            testSchedulerProvider,
-            compositeDisposable,
             networkHelper,
             factsRepository
         )

@@ -8,7 +8,6 @@ import com.wipro.factsapp.mvvmbase.di.components.ApplicationComponent
 import com.wipro.factsapp.mvvmbase.di.components.DaggerApplicationComponent
 import com.wipro.factsapp.mvvmbase.di.modules.ApplicationModule
 import com.wipro.factsapp.mvvmbase.network.NetworkService
-import com.wipro.factsapp.mvvmbase.rx.SchedulerProvider
 import javax.inject.Inject
 
 class FactsApplication : MultiDexApplication(),
@@ -18,9 +17,6 @@ class FactsApplication : MultiDexApplication(),
 
     @Inject
     lateinit var networkService: NetworkService
-
-    @Inject
-    lateinit var schedulerProvider: SchedulerProvider
 
     override fun onCreate() {
         super.onCreate()

@@ -10,21 +10,29 @@ import com.wipro.factsapp.utils.NetworkHelper
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class FactsViewModel(
+class FactsFragmentViewModel(
     networkHelper: NetworkHelper,
     private val factsRepository: FactsRepository
 ) : BaseViewModel(networkHelper) {
 
     val isRefreshingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val factsResponse: MutableLiveData<Resource<FactsResponse>> = MutableLiveData()
+    val isInternetConnected: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun onCreate() {}
 
     fun getAllFacts() = viewModelScope.launch {
         factsResponse.postValue(Resource.loading())
-        val response = factsRepository.getAllFacts()
         isRefreshingLiveData.postValue(false)
-        factsResponse.postValue(handleFactsResponse(response))
+
+        if (isInternetConnected()) {
+            isInternetConnected.postValue(true)
+            val response = factsRepository.getAllFacts()
+            factsResponse.postValue(handleFactsResponse(response))
+        } else {
+            isInternetConnected.postValue(false)
+        }
+
     }
 
     fun handleFactsResponse(response: Response<FactsResponse>?): Resource<FactsResponse> {
@@ -38,4 +46,5 @@ class FactsViewModel(
         return Resource.error(response?.body())
     }
 
+    fun isInternetConnected(): Boolean = checkInternetConnection()
 }

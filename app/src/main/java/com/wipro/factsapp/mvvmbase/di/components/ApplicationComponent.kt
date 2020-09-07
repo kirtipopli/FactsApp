@@ -6,10 +6,8 @@ import com.wipro.factsapp.application.FactsApplication
 import com.wipro.factsapp.mvvmbase.di.ApplicationContext
 import com.wipro.factsapp.mvvmbase.di.modules.ApplicationModule
 import com.wipro.factsapp.mvvmbase.network.NetworkService
-import com.wipro.factsapp.mvvmbase.rx.SchedulerProvider
 import com.wipro.factsapp.utils.NetworkHelper
 import dagger.Component
-import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Singleton
@@ -26,9 +24,4 @@ interface ApplicationComponent {
     fun getNetworkService(): NetworkService
 
     fun getNetworkHelper(): NetworkHelper
-
-    fun getSchedulerProvider(): SchedulerProvider
-
-    fun getCompositeDisposable(): CompositeDisposable
-
 }

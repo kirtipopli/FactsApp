@@ -7,8 +7,6 @@ import com.wipro.factsapp.application.FactsApplication
 import com.wipro.factsapp.mvvmbase.di.ApplicationContext
 import com.wipro.factsapp.mvvmbase.network.NetworkService
 import com.wipro.factsapp.mvvmbase.network.Networking
-import com.wipro.factsapp.mvvmbase.rx.RxSchedulerProvider
-import com.wipro.factsapp.mvvmbase.rx.SchedulerProvider
 import com.wipro.factsapp.utils.NetworkHelper
 import dagger.Module
 import dagger.Provides
@@ -27,16 +25,6 @@ class ApplicationModule(private val application: FactsApplication) {
     @ApplicationContext
     fun provideContext(): Context = application
 
-    /**
-     * Since this function do not have @Singleton then each time CompositeDisposable is injected
-     * then a new instance of CompositeDisposable will be provided
-     */
-    @Provides
-    fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
-
-    @Provides
-    fun provideSchedulerProvider(): SchedulerProvider = RxSchedulerProvider()
-
 
     @Provides
     @Singleton
@@ -52,5 +40,4 @@ class ApplicationModule(private val application: FactsApplication) {
     @Singleton
     @Provides
     fun provideNetworkHelper(): NetworkHelper = NetworkHelper(application)
-
 }
