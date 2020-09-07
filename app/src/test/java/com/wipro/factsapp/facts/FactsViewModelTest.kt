@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.wipro.factsapp.data.dao.repository.FactsRepository
 import com.wipro.factsapp.data.network.callback.Resource
 import com.wipro.factsapp.features.facts.model.FactsResponse
-import com.wipro.factsapp.features.facts.viewmodel.FactsViewModel
+import com.wipro.factsapp.features.facts.viewmodel.FactsFragmentViewModel
 import com.wipro.factsapp.utils.NetworkHelper
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.TestScheduler
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
@@ -35,16 +34,15 @@ class FactsViewModelTest {
     @Mock
     private lateinit var factsObserver: Observer<Resource<FactsResponse>>
 
-    private lateinit var factsViewModel: FactsViewModel
+    private lateinit var factsViewModel: FactsFragmentViewModel
 
     private lateinit var testScheduler: TestScheduler
 
 
     @Before
     fun setUp() {
-        val compositeDisposable = CompositeDisposable()
         testScheduler = TestScheduler()
-        factsViewModel = FactsViewModel(
+        factsViewModel = FactsFragmentViewModel(
             networkHelper,
             factsRepository
         )
@@ -58,6 +56,11 @@ class FactsViewModelTest {
         runBlocking {
             (factsViewModel.viewModelScope.coroutineContext[Job]?.children?.forEach { it.join() })
         }
+    }
+
+    @Test
+    fun isInternetConnected() {
+        factsViewModel.isInternetConnected()
     }
 
     @After
