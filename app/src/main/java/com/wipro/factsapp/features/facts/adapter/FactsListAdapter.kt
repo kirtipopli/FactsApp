@@ -14,9 +14,9 @@ import com.wipro.factsapp.databinding.LayoutFactsItemBinding
 import com.wipro.factsapp.features.facts.model.Facts
 
 class FactsListAdapter(
-    private val mContext: Context,
-    var factsList: ArrayList<Facts>,
-    var onFactsSelected: (Facts, Int) -> Unit
+    private val mContext: Context?,
+    var factsList: MutableList<Facts?>?,
+    var onFactsSelected: (Facts?, Int) -> Unit
 ) :
     RecyclerView.Adapter<FactsListAdapter.FactsViewHolder>() {
 
@@ -33,24 +33,34 @@ class FactsListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return factsList.size
+        return factsList?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: FactsViewHolder, position: Int) {
 
         if (!factsList.isNullOrEmpty()) {
-            val facts: Facts = factsList[position]
+            val facts: Facts? = factsList?.get(position)
 
-            holder.binding?.tvFactTitle?.text = facts.title ?: "Data not available"
-            holder.binding?.tvFactsDescription?.text = facts.description ?: "Data not available"
+            if (facts?.title.isNullOrEmpty() || facts?.description.isNullOrEmpty()) {
+                holder.binding?.clFactsItemMain?.visibility = View.GONE
+            } else {
+                holder.binding?.tvFactTitle?.text = facts?.title
+                holder.binding?.tvFactsDescription?.text = facts?.description
 
-            holder.binding?.imgFactIcon?.let {
-                Glide.with(mContext).asBitmap().load(facts.imageHref)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .apply(RequestOptions().placeholder(R.drawable.ic_action_image))
-                    .apply(RequestOptions().centerCrop())
-                    .dontAnimate()
-                    .into(it)
+                holder.binding?.imgFactIcon?.let {
+                    mContext?.let { it1 ->
+                        Glide.with(it1).asBitmap().load(facts?.imageHref)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .apply(RequestOptions().placeholder(R.drawable.ic_action_image))
+                            .apply(RequestOptions().centerCrop())
+                            .dontAnimate()
+                            .into(it)
+                    }
+                }
+
+            }
+            if (position == factsList?.size?.minus(1)) {
+                holder.binding?.dividerFactsItems?.visibility = View.GONE
             }
 
             holder.binding?.rlFactsDetails?.setOnClickListener { onFactsSelected(facts, position) }

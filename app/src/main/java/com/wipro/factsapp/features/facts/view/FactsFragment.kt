@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.fragment_facts.*
 class FactsFragment : BaseFragment<FactsFragmentViewModel>(), SwipeRefreshLayout.OnRefreshListener {
 
     private var factsListAdapter: FactsListAdapter? = null
-    private var factsList: ArrayList<Facts>? = null
 
     override fun provideLayoutId(): Int = R.layout.fragment_facts
 
@@ -59,9 +58,14 @@ class FactsFragment : BaseFragment<FactsFragmentViewModel>(), SwipeRefreshLayout
                     recycler_facts.visibility = View.VISIBLE
                     tv_emptyFacts.visibility = View.GONE
                     (activity as AppCompatActivity).supportActionBar?.title = resp.title
-//                    tv_factsTitle.text = resp.title
-                    factsListAdapter?.factsList = it.data.rows!!
-                    factsListAdapter?.notifyDataSetChanged()
+
+                    val respList: MutableList<Facts?>? = it.data.rows
+                    respList?.removeIf { obj: Facts? -> obj?.title == null || obj.description == null || obj.imageHref == null }
+                    print(respList)
+                    factsListAdapter.apply {
+                        this?.factsList = respList
+                        this?.notifyDataSetChanged()
+                    }
                 }
             })
     }
@@ -72,23 +76,24 @@ class FactsFragment : BaseFragment<FactsFragmentViewModel>(), SwipeRefreshLayout
         viewModel.getAllFacts()
         progress_facts.visibility = View.VISIBLE
 
-        factsList = ArrayList()
+        swipeRefresh_Facts.apply {
+            setOnRefreshListener(this@FactsFragment)
+            swipeRefresh_Facts.setColorSchemeResources(
+                R.color.colorPrimary,
+                R.color.colorBlue,
+                R.color.colorGreen,
+                R.color.colorYellow
+            )
+        }
 
-        swipeRefresh_Facts.setOnRefreshListener(this)
-        swipeRefresh_Facts.setColorSchemeResources(
-            R.color.colorPrimary,
-            R.color.colorBlue,
-            R.color.colorGreen,
-            R.color.colorYellow
-        )
-
-
-        factsListAdapter = context?.let { FactsListAdapter(it, factsList!!, ::onFactsSelected) }
-        recycler_facts.adapter = factsListAdapter
-        recycler_facts.layoutManager = LinearLayoutManager(context)
+        factsListAdapter = FactsListAdapter(context, ArrayList(), ::onFactsSelected)
+        recycler_facts.apply {
+            this.adapter = factsListAdapter
+            this.layoutManager = LinearLayoutManager(context)
+        }
         factsListAdapter?.notifyDataSetChanged()
 
-        if (factsList.isNullOrEmpty()) {
+        if (factsListAdapter?.factsList.isNullOrEmpty()) {
             tv_emptyFacts.visibility = View.VISIBLE
         }
 
@@ -99,23 +104,13 @@ class FactsFragment : BaseFragment<FactsFragmentViewModel>(), SwipeRefreshLayout
         viewModel.getAllFacts()
     }
 
-    private fun onFactsSelected(facts: Facts, position: Int) {
-        Toast.makeText(activity, facts.title, Toast.LENGTH_SHORT).show()
+    private fun onFactsSelected(facts: Facts?, position: Int) {
+        Toast.makeText(activity, facts?.title, Toast.LENGTH_SHORT).show()
     }
 
     override fun onRefresh() {
         viewModel.isRefreshingLiveData.postValue(true)
         viewModel.getAllFacts()
     }
-
-/*
-    private fun showNoNetSnackbar() {
-        val snack = Snackbar.make(rootView, "No Internet!", Snackbar.LENGTH_LONG) // replace root view with your view Id
-        snack.setAction("Settings") {
-            startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
-        }
-        snack.show()
-    }
-*/
 
 }

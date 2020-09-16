@@ -15,6 +15,6 @@ data class FactsResponse(
     @get:JsonProperty("rows")
     @set:JsonProperty("rows")
     @JsonProperty("rows")
-    var rows: ArrayList<Facts>? = null
+    var rows: MutableList<Facts?>? = null
 ) : Serializable {
 }
